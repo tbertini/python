@@ -13,7 +13,7 @@ serverResponse = clientSocket.recv(1024).decode()
 print(serverResponse, end="")
 
 
-# Converts a decimal ip into binary (!!!MAY NEED TO HAVE OUR OWN IMPLEMENTATION, LIKE IN PREVIOUS EXERCISE)
+# Converts a decimal ip into binary (!!!NEEDS TO BE FIXED: LIKE IN PREVIOUS EXERCISE)
 def tobinary(ip):
     bytes = ip.split(".")
     binIp = '{0:08b}'.format(int(bytes[0])) + '{0:08b}'.format(int(bytes[1])) + '{0:08b}'.format(int(bytes[2])) \

@@ -16,7 +16,7 @@ print(serverResponse, end="")
 byte0 = serverResponse.split()[0]
 byte1 = serverResponse.split()[1]
 
-# (NEED OUR OWN BINARY ADDITION METHOD)
+# (NEEDS TO BE FIXED: NEED OUR OWN BINARY ADDITION METHOD)
 # Converting bytes to int to sum them and then converting to binary using python builtins
 sum = int(byte0, 2) + int(byte1, 2)
 sum = '{0:08b}'.format(sum)
