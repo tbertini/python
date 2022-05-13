@@ -26,11 +26,13 @@ interfaces = serverResponse.split(",")
 binaryDestinationAddress = tobinary(interfaces[len(interfaces) - 1])
 
 result = len(interfaces) - 2  # Setting result to the otherwise value, which is equal to length-2
-bestPrefixMatchingCount = 0
+longestMatch = 0
 
-# Searching for the longest matching prefix in the given interfaces
+# Searching for the longest matching prefix in the given interfaces, an interface is valid iff the matching bits
+# are greater than the mask bits.
 for x in range(0, len(interfaces) - 2):
     binIp = tobinary(interfaces[x].split("/")[0])
+    mask = int(interfaces[x].split("/")[1].split(" ")[0])
     count = 0
     for y in range(0, 32):
         if binIp[y] == binaryDestinationAddress[y]:
@@ -38,12 +40,10 @@ for x in range(0, len(interfaces) - 2):
         else:
             break
 
-    # For some reason sometimes when only the first few bits match (less than 8)
-    # that is not the correct answer. I don't remember this being a prerequisite for
-    # the longest matching prefix though...
-    if count > bestPrefixMatchingCount and count >= 8:
+
+    if count > longestMatch and count >= mask:
         result = x
-        bestPrefixMatchingCount = count
+        longestMatch = count
 
 
 # Send result to server
